@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.lang.Math;
 
 public class Guesser {
 	public static void main(String[] args){
@@ -16,10 +17,10 @@ public class Guesser {
 				keepGoing = false;
 
 			} else if (response.equals("1")){
-				// run userGuess
+				userGuess();
 
 			} else if (response.equals("2")){
-				//run cpuGuess
+				cpuGuess();
 				
 			} else {
 				System.out.println("I'm not sure I understand.");
@@ -64,6 +65,46 @@ public class Guesser {
 		} // end while
 	} // end userGuess
 
+
+	public void cpuGuess(String[] args){
+		int lower = 0;
+		int upper = 100;
+		int tries = 0;
+
+		boolean keepGoing = true;
+		while (keepGoing){
+			int guess = Math.round((upper - lower) / 2);
+
+			System.out.println("Is it " + guess + " ?");
+			System.out.println("Too (h)igh, too (l)ow, or (c)orrect?");
+
+			string result = input.nextLine();
+
+			if (result == "h"){
+				upper = guess;
+				tries += 1;
+			
+			} else if (result == "l"){
+				lower = guess;
+				tries += 1;
+
+			} else if (result == "c"){
+				System.out.println("I win!");
+				keepGoing = false;
+
+			} else if (tries >= 7){
+				System.out.println("You win!);
+				keepGoing = false;
+
+			} else {
+				System.out.println("I don't understand. Type 'h', 'l', or 'c'.");
+			} //end if
+
+		}// end while
+
+	}// end cpuGuess
+
+}// end guesser
 	
 
 
